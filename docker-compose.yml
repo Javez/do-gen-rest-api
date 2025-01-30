@@ -1,26 +1,28 @@
 version: "3"
 services:
   mysql:
-    container_name: 
-    image: 
+    container_name: mysql 
+    image: mysql:latest
+    restart: always
     ports:
     - "5432:5432"
     volumes:
-    - ./data/db:/data/db_name
+    - ./data/mysql:/data/mysql
     env_file:
     - docker.env
     networks:
     - db
 
-  tool:
+  adminer:
     links:
-    - db_name:db_name
-    container_name: tool
-    image: 
+    - mysql:mysql
+    container_name: adminer
+    image: adminer
+    restart: always
     ports:
     - "8080:80"
     volumes:
-    - ./data/db:/root/.db
+    - ./data/adminer:/root/.adminer
     env_file:
     - docker.env
     networks:
