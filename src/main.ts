@@ -7,7 +7,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
 
-  // Swagger API Documentation
   const config = new DocumentBuilder()
     .setTitle('NestJS Auth API')
     .setDescription('API for user authentication and external data integration')
@@ -16,6 +15,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  await app.listen(process.env.PORT ?? 3000);
+  
+  await app.listen(parseInt(process.env.PORT, 10) || 8000);
 }
 bootstrap();
