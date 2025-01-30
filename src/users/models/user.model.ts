@@ -1,4 +1,14 @@
-import { AutoIncrement, Column, CreatedAt, Model, PrimaryKey, Table, Unique, UpdatedAt } from 'sequelize-typescript';
+import { Exclude } from 'class-transformer';
+import {
+  AutoIncrement,
+  Column,
+  CreatedAt,
+  Model,
+  PrimaryKey,
+  Table,
+  Unique,
+  UpdatedAt,
+} from 'sequelize-typescript';
 
 @Table
 export class User extends Model<User> {
