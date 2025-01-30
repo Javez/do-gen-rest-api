@@ -6,6 +6,7 @@ import { PostsModule } from './posts/posts.module';
 import { DatabaseModule } from './database/database.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Dialect } from 'sequelize';
+import { User } from './users/models/user.model';
 import * as Joi from 'joi';
 
 @Module({
@@ -24,6 +25,7 @@ import * as Joi from 'joi';
         SEQUELIZE_USERNAME: Joi.string(),
         SEQUELIZE_PASSWORD: Joi.string(),
         SEQUELIZE_DATABASE: Joi.string(),
+        JWT_SECRET: Joi.string(),
       }),
     }),
     SequelizeModule.forRoot({
@@ -33,7 +35,7 @@ import * as Joi from 'joi';
       username: process.env.SEQUELIZE_USERNAME,
       password: process.env.SEQUELIZE_PASSWORD,
       database: process.env.SEQUELIZE_DATABASE,
-      models: [],
+      models: [User],
     }),
     AuthModule,
     UsersModule,
