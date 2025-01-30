@@ -1,0 +1,31 @@
+version: "3"
+services:
+  mysql:
+    container_name: 
+    image: 
+    ports:
+    - "5432:5432"
+    volumes:
+    - ./data/db:/data/db_name
+    env_file:
+    - docker.env
+    networks:
+    - db
+
+  tool:
+    links:
+    - db_name:db_name
+    container_name: tool
+    image: 
+    ports:
+    - "8080:80"
+    volumes:
+    - ./data/db:/root/.db
+    env_file:
+    - docker.env
+    networks:
+    - db
+
+networks:
+  postgres:
+    driver: bridge
